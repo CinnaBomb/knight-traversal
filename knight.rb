@@ -1,4 +1,4 @@
-class Node
+class Knight
 	attr_accessor :position
 
 	def initialize(start_pos=[0,0])
@@ -14,7 +14,7 @@ class Node
 		x = start_pos[0]
 		#puts x
 		y = start_pos[1]
-
+		#puts "x: #{x}   y: #{y}"
 		possible_moves.push(
 			[x+2, y+1],
 			[x+2, y-1],
@@ -24,6 +24,7 @@ class Node
 			[x-2, y-1],
 			[x-1, y+2],
 			[x-1, y-2])
+		#puts possible_moves.inspect
 		possible_moves.each do |set|
 			valid << set if valid_move?(set)
 		end
@@ -48,56 +49,25 @@ class Node
 
 		while !array.empty?
 			set = array.shift
+			#puts "set: #{set}"
 			final << set
 			if valid_moves(set).include?(end_pos)
 				final << end_pos
-				return
+				return final
 			else
-				array << valid_moves(set)
+				valid_moves(set).each {|m| array<<m}
 				final.pop
 			end
 		end	
-		final
-	end
-
-
-	def breadth_first_search0(value)
-		q = []
-		current_node = @top_node
-		while !current_node.nil?
-			return current_node if current_node.value == value
-			q.push current_node.left_child if !current_node.left_child.nil?
-			q.push current_node.right_child if !current_node.right_child.nil?
-			current_node = q.shift
-		end
-	end
-
-
-	def knight_movesX(from, to)
-		knight_pos = Node.new(from)
-
-		if from == to
-			puts "same"
-			return
-		else
-			moves = possible_moves(from, to).min {|a,b| a.length <=> b.length}
-			puts moves.inspect
-
-
-		end
+		#puts "final: #{final}"
 	end
 
 
 end
 
-class Game
 
-	def initialize
-		@board = []
-
-	end
-end
-
-k = Node.new
-puts k.shortest_path([0,0],[1,2]).inspect
-puts k.shortest_path([0,0],[3,3]).inspect
+k = Knight.new
+puts k.knight_moves([0,0],[1,2]).inspect
+puts k.knight_moves([0,0],[3,3]).inspect
+puts k.knight_moves([3,3],[0,0]).inspect
+puts k.knight_moves([3,3],[4,3]).inspect
