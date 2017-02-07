@@ -95,6 +95,8 @@ end
 # puts k.knight_moves([0,0],[1,2]).inspect
 # puts k.knight_moves([0,0],[3,3]).inspect
 # puts k.knight_moves([3,3],[0,0]).inspect
+# puts k.knight_moves([0,0],[7,7]).inspect
 # puts k.knight_moves([3,3],[4,3]).inspect
 #k.knight_moves([3,3],[4,3])
 #=>[3,3], [4,5], [2,4], [4,3]
+
