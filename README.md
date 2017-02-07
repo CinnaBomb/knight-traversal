@@ -23,3 +23,5 @@ Use the chosen search algorithm to find the shortest path between the starting s
     [4,5]
     [2,4]
     [4,3]
+
+Note: My path is not the same as the one above but still contains 4 valid moves.
